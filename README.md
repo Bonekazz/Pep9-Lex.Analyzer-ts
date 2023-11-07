@@ -2,7 +2,7 @@
     A simple lexycal analyzer for an assembler project;
 
 ## FSM Design
-    ![Finite State Machine design](./FSM_model.png "FSM design")
+    [Finite State Machine design](./FSM_model.png "FSM design")
 
 ## Components:
 ### InBuffer
