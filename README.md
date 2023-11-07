@@ -2,7 +2,7 @@
     A simple lexycal analyzer for an assembler project;
 
 ## FSM Design
-    ![Finite State Machine design](./FSM_model.png)
+    ![Finite State Machine design](https://github.com/Bonekazz/Lexycal-Analyzer-ts/blob/main/FSM_model.png)
 
 ## Components:
 ### InBuffer
