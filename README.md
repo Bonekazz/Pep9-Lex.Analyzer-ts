@@ -2,7 +2,7 @@
     A simple lexycal analyzer for an assembler project;
 
 ## FSM Design
-    
+![FSM_model](https://github.com/Bonekazz/Lexycal-Analyzer-ts/assets/103968474/eca336e6-d342-4910-af4a-831f669f7c1e)
 
 ## Components:
 ### InBuffer
