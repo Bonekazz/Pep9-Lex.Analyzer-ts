@@ -18,9 +18,7 @@ export default class Tokenizer {
         let aToken = new TEmpty();
         let state = LexState.START;
 
-
         do {
-        
             nextChar = this.b.advanceInput();
             switch (state) {
                 case LexState.START:
@@ -102,13 +100,13 @@ export default class Tokenizer {
                     }
 
                     this.b.backUpInput();
-                    aToken = new TInteger(localIntValue);
+                    aToken = new TInteger(sign * localIntValue);
                     state = LexState.STOP;
                     break;
                 
                 case LexState.SIGN:
                     if (Util.isDigit(nextChar)) {
-                        localIntValue = 10 * localIntValue + Number(localStringValue);
+                        localIntValue = 10 * localIntValue + Number(nextChar);
                         state = LexState.INT2;
                         break;
                     }
