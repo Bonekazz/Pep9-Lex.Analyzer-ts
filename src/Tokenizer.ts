@@ -139,7 +139,7 @@ export default class Tokenizer {
                         break;
                     }
 
-                    if (localStringValue.toLowerCase() === "0xffff") {
+                    if (Number(localStringValue) >= 65535) {
                         aToken = new TInvalid(true);
                         break;
                     }
