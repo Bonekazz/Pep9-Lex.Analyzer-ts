@@ -1,5 +1,5 @@
 import InBuffer from './InBuffer.ts';
-import { TEmpty, TInvalid, TInteger, TIdentifier, THex, TDotCommand, TAddress } from './Tokens.ts'
+import AToken, { TEmpty, TInvalid, TInteger, TIdentifier, THex, TDotCommand, TAddress } from './Tokens.ts'
 import Util, { LexState } from './Utils.ts'
 
 
@@ -10,7 +10,7 @@ export default class Tokenizer {
         this.b = inBuffer;
     }
 
-    getToken() {
+    getToken(): AToken{
         let nextChar = "";
         let localStringValue = "";
         let localIntValue = 0;
@@ -58,7 +58,6 @@ export default class Tokenizer {
                     }
 
                     if (nextChar === ',') {
-                        localStringValue = nextChar;
                         state = LexState.ADDR1;
                         break;
                     }
@@ -131,7 +130,7 @@ export default class Tokenizer {
                     }
 
                     this.b.backUpInput();
-                    aToken = new THex(localStringValue);
+                    aToken = new THex(Number(localStringValue));
                     state = LexState.STOP;
                     break;
                 
@@ -168,12 +167,17 @@ export default class Tokenizer {
                     break;
 
                 case LexState.ADDR1:
-                    if (nextChar === ' ') {
+                    if (Util.isAlpha(nextChar)) {
+                        localStringValue += nextChar;
                         state = LexState.ADDR2;
                         break;
                     }
 
-                    aToken = new TInvalid();
+                    if (nextChar !== ' ') {
+                        aToken = new TInvalid();
+                        break;
+                    }
+                    
                     break;
                 
                 case LexState.ADDR2:

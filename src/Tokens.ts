@@ -34,22 +34,20 @@ export class TInteger extends AToken {
     };
 
     getDescription(): string {
-        return `Integer     = ${this.intValue}`
+        return `Integer               = ${this.intValue}`
     }
 }
 
 export class THex extends AToken {
-    private hexValue: string;
-    // private hexConverted: number;
+    private hexValue: number;
 
-    constructor(hexString: string) {
+    constructor(hex: number) {
         super();
-        this.hexValue = hexString;
-        // this.hexConverted = Number(hexString);
+        this.hexValue = hex;
     }
 
     getDescription(): string {
-        return `HexaDecimal = ${this.hexValue}`
+        return `HexaDecimal           = ${this.hexValue}`
     }
 }
 
@@ -62,7 +60,7 @@ export class TIdentifier extends AToken {
     };
 
     getDescription(): string {
-        return `Identifier  = ${this.stringValue}`
+        return `Identifier           = ${this.stringValue}`
     }
 }
 
@@ -75,7 +73,7 @@ export class TDotCommand extends AToken {
     }
 
     getDescription(): string {
-       return `DotCommand  = ${this.dotCommand}` 
+       return `DotCommand          = ${this.dotCommand}` 
     }
 }
 
@@ -88,6 +86,6 @@ export class TAddress extends AToken {
     }
 
     getDescription(): string {
-       return `Address    = ${this.adress}` 
+       return `Addressing Mode      = ${this.adress}` 
     }
 }
