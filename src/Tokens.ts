@@ -17,11 +17,18 @@ export class TEmpty extends AToken {
 }
 
 export class TInvalid extends AToken {
-    constructor() { 
+    private range: boolean;
+
+    constructor(isOut: boolean = false) { 
         super();
+        this.range = isOut;
     };
 
     getDescription(): string {
+        if (this.range) {
+            return "Out of Range"
+        }
+
         return "Syntax Error";
     }
 }

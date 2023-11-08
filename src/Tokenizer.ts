@@ -62,7 +62,7 @@ export default class Tokenizer {
                         break;
                     }
 
-                    if (nextChar === '\n') {
+                    if (nextChar === '\n' || nextChar.charCodeAt(0) === 13) {
                         state = LexState.STOP;
                         break;
                     }
@@ -93,6 +93,16 @@ export default class Tokenizer {
                     break;
 
                 case LexState.INT2:
+                    if (localIntValue >= 65535 && sign === 1) {
+                        aToken = new TInvalid(true);
+                        break;
+                    }
+
+                    if (localIntValue >= 32768 && sign === -1) {
+                        aToken = new TInvalid(true);
+                        break;
+                    }
+
                     if (Util.isDigit(nextChar)) {
                         localIntValue = 10 * localIntValue + Number(nextChar);
                         break;
@@ -126,6 +136,11 @@ export default class Tokenizer {
                 case LexState.HEX2:
                     if (Util.isHex(nextChar)) {
                         localStringValue += nextChar;
+                        break;
+                    }
+
+                    if (localStringValue.toLowerCase() === "0xffff") {
+                        aToken = new TInvalid(true);
                         break;
                     }
 
