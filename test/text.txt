@@ -1,1 +1,5 @@
-beta .alpha ,SFX , i -445 24 0xF23a
+alpha$beta
+0xQ
+0x12345
+-32769
+65536
