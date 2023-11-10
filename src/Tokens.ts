@@ -54,7 +54,7 @@ export class THex extends AToken {
     }
 
     getDescription(): string {
-        return `HexaDecimal           = ${this.hexValue}`
+        return `HexaDecimal          = ${this.hexValue}`
     }
 }
 
@@ -80,7 +80,7 @@ export class TDotCommand extends AToken {
     }
 
     getDescription(): string {
-       return `DotCommand          = ${this.dotCommand}` 
+       return `DotCommand           = ${this.dotCommand}` 
     }
 }
 
