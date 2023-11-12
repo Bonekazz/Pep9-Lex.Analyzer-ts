@@ -1,6 +1,6 @@
-import InBuffer from './InBuffer.ts';
-import AToken, { TEmpty, TInvalid, TInteger, TIdentifier, THex, TDotCommand, TAddress, TSymbol } from './Tokens.ts'
-import Util, { LexState } from './Utils.ts'
+import InBuffer from './InBuffer';
+import AToken, { TEmpty, TInvalid, TInteger, TIdentifier, THex, TDotCommand, TAddress, TSymbol, TComment } from './Tokens'
+import Util, { LexState } from './Utils'
 
 
 export default class Tokenizer {
@@ -62,6 +62,12 @@ export default class Tokenizer {
                         break;
                     }
 
+                    if (nextChar === ';') {
+                        state = LexState.COMMENT;
+                        localStringValue = nextChar;
+                        break;
+                    }
+
                     if (nextChar === '\n' || nextChar.charCodeAt(0) === 13) {
                         state = LexState.STOP;
                         break;
@@ -72,6 +78,17 @@ export default class Tokenizer {
                         break;
                     }
                     
+                    break;
+                
+                case LexState.COMMENT:
+                    if (nextChar !== '\n') {
+                        localStringValue += nextChar;
+                        break;
+                    }
+
+                    this.b.backUpInput();
+                    aToken = new TComment(localStringValue.slice(1));
+                    state = LexState.STOP;
                     break;
                 
                 case LexState.INT1:
