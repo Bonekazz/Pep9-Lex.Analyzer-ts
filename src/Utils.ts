@@ -17,3 +17,5 @@ export default class Util {
 export enum LexState {
     START, INT1, INT2, HEX1, HEX2, SIGN, IDENTIFIER, DOT1, DOT2, ADDR1, ADDR2, SYMBOL, COMMENT, STOP
 }
+
+const text = "testando submodulo";
