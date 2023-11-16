@@ -1,9 +1,8 @@
-
 /**
  *  @abstract
  */
 export default abstract class AToken {
-    abstract getDescription(): string;      // prints the token type and its value;
+    abstract getDescription(): string;
 }
 
 export class TEmpty extends AToken {
@@ -31,6 +30,7 @@ export class TInvalid extends AToken {
 
         return "Syntax Error";
     }
+
 }
 export class TInteger extends AToken {
     private intValue: number;
@@ -42,6 +42,10 @@ export class TInteger extends AToken {
 
     getDescription(): string {
         return `Integer               = ${this.intValue}`
+    }
+
+    getIntValue(): number {
+        return this.intValue;
     }
 }
 
@@ -56,6 +60,10 @@ export class THex extends AToken {
     getDescription(): string {
         return `HexaDecimal          = ${this.hexValue}`
     }
+
+    getIntValue(): number {
+        return this.hexValue;
+    }
 }
 
 export class TIdentifier extends AToken {
@@ -68,6 +76,10 @@ export class TIdentifier extends AToken {
 
     getDescription(): string {
         return `Identifier           = ${this.stringValue}`
+    }
+
+    getStringValue(): string {
+        return this.stringValue;
     }
 }
 
@@ -82,6 +94,10 @@ export class TDotCommand extends AToken {
     getDescription(): string {
        return `DotCommand           = ${this.dotCommand}` 
     }
+
+    getStringValue(): string {
+        return this.dotCommand;
+    }
 }
 
 export class TAddress extends AToken {
@@ -95,6 +111,10 @@ export class TAddress extends AToken {
     getDescription(): string {
        return `Addressing Mode      = ${this.adress}` 
     }
+
+    getStringValue(): string {
+        return this.adress;
+    }
 }
 
 export class TSymbol extends AToken {
@@ -107,6 +127,10 @@ export class TSymbol extends AToken {
 
     getDescription(): string {
        return `Symbol               = ${this.symbol}` 
+    }
+
+    getStringValue(): string {
+        return this.symbol;
     }
 }
 
