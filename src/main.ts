@@ -4,7 +4,7 @@ import Tokenizer from './Tokenizer';
 import InBuffer from './InBuffer';
 import AToken from './Tokens';
 
-fs.readFile('./test/teste.txt', 'utf8', (err, data) => {
+fs.readFile('src/test/teste.txt', 'utf8', (err, data) => {
     if (err) {
         console.error(err);
         return;
